@@ -1,48 +1,45 @@
-//src/models/Product.js   
-
-const mongoose = require('mongoose');
+//src/models/Product.js 
 
 const productSchema = new mongoose.Schema({
-    product_name: {
+    product_name: { 
+        type: String, 
+        required: true
+    },
+    sku: {
         type: String,
-        required: true,
-        unique: true
+        unique: true,
     },
-    category_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true
+    barcode: {
+        type: String,
+        unique: true,
     },
-    supplier_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Supplier',
-        required: true
+    category: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Category' 
     },
-    cost_price: {
-        type: Number,
-        required: true,
-        min: 0
+    supplier: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Supplier' 
     },
-    selling_price: {
-        type: Number,
-        required: true,
-        min: 0  
+    unit_price: { 
+        type: Number, 
+        required: true 
     },
-    reorder_level: {
-        type: Number,
-        required: true,
-        min: 0
+    quantity_in_stock: { 
+        type: Number, 
+        required: true 
     },
-    stock_quantity: {
-        type: Number,
-        required: true,
-        min: 0
+    description: {
+        type: String,
     },
-    is_active: {
+    isActive: {
         type: Boolean,
         default: true
-    }   
-}, { timestamps: true });    
+    },
+}, { timestamps: true });
 
-module.exports = mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
+module.exports = Product;
+
+
 

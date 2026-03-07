@@ -1,15 +1,36 @@
-//src/models/Setting.js 
+//src/models/Settings.js 
 
-const mongoose = require('mongoose');
-
-const settingSchema = new mongoose.Schema({
-    setting_key: {
-        type: String,   
-        required: true,
-        unique: true
+const stockMovementSchema = new mongoose.Schema({
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
     },
-    setting_value: String,
-}, { timestamps: true });
+    type: {
+        type: String,
+        enum: ['in', 'out'],
+    },
+    quantity: {
+        type: Number,
+        required: true,
+    },
+    referenceType: {
+        type: String,
+        enum: ['purchase', 'sale', 'adjustment'],
+    },
+    referenceId: {
+        type: mongoose.Schema.Types.ObjectId,
+    },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
+    timestamp: {
+        type: Date,
+        default: Date.now,
+    },
+});
 
-module.exports = mongoose.model('Setting', settingSchema);
+const StockMovement = mongoose.model('StockMovement', stockMovementSchema);
+
+module.exports = StockMovement;
 

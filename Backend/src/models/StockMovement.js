@@ -1,27 +1,36 @@
-//src/models/StockMovement.js
- 
-const mongoose = require('mongoose');
+//src/models/Stock_movement.js
 
-const supplierSchema = new mongoose.Schema({
-    product_id: {
+const StockMovementSchema = new mongoose.Schema({
+    product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
-    },
-    warehouse_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Warehouse',
+        required: true
     },
     quantity: {
         type: Number,
-        required: true,
+        required: true
     },
     movement_type: {
         type: String,
-        enum: ['Purchase', 'Sale', 'Adjustment'],
-        required: true,
+        enum: ['IN', 'OUT'],
+        required: true
     },
-    reference_id: mongoose.Schema.Types.ObjectId,
-}, { timestamps: { createdAt: 'created_at', updatedAt: false } });
+    reference_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        refPath: 'reference_model',
+        required: true
+    },
+    reference_model: {
+        type: String,
+        enum: ['Purchase', 'Sale'],
+        required: true
+    },
+    movement_date: {
+        type: Date,
+        default: Date.now
+    },  
+}, { timestamps: true });
 
-module.exports = mongoose.model('StockMovement', supplierSchema);
+const StockMovement = mongoose.model('StockMovement', StockMovementSchema);
+module.exports = StockMovement;
 

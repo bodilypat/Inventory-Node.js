@@ -1,22 +1,34 @@
-//src/models/Supplier.js
-
-const mongoose = require('mongoose');
-
+//src/models/supplier.js
 const supplierSchema = new mongoose.Schema({
-    supplier_name: {
-        type: String,
-        required: true,
-        unique: true
+    supplier_name: { 
+        type: String, 
+        required: true 
     },
-    contact_name: String,
-    contact_email: String,
-    contact_phone: String,
-    address: String,
-    city: String,
-    country: String,
-    postal_code: String,
-}, { timestamps: { createdAt: 'created_at', updatedAt: false } });
+    contact_person_name: { 
+        type: String, 
+        required: true 
+    },
+    contact_email: { 
+        type: String, 
+        required: true 
+    },
+    contact_phone: { 
+        type: String,
+        required: true 
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+}, { timestamps: true });
 
-module.exports = mongoose.model('Supplier', supplierSchema);
+const Supplier = mongoose.model('Supplier', supplierSchema);
+module.exports = Supplier;
 
-        
+
+
+

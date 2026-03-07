@@ -1,16 +1,20 @@
-//src/models/Category.js
-
-const mongoose = require('mongoose');
+//src/models/category.s 
 
 const categorySchema = new mongoose.Schema({
-    categor_name: {
-        type: String,
-        required: true,
-        unique: true
+    category_name: { 
+        type: String, 
+        required: true
     },
-    description: String,
-}, {
-    timestamps: { createdAt: 'created_at', updatedAt: false }
-});
+    description: {
+        type: String
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+}, { timestamps: true });
 
-module.exports = mongoose.model('Category', categorySchema);
+const Category = mongoose.model('Category', categorySchema);
+module.exports = Category;
+
+
