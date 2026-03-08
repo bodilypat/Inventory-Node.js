@@ -1,50 +1,61 @@
-Full-Stack-Inventory-Management-System(IMS)
-├── backend(Node.js)
+Full-Stack-Inventory-Management-System(IMS)  
+├── backend(Node.js)   Client(Post/api)->Routes -> Controllers -> Services -> Model -> MongoDB
 │   ├── src/
-│   │   ├── app.js                          
 │   │   ├── config/                                     # Database connection, Environment config 
 │   │   │   ├── db.js
 │   │   │   └── index.js
 │   │   │
 │   │   ├── models/                                     # Mongoose schemas 
-│   │   │   ├── Category.js                              
-│   │   │   ├── Supplier.js
-│   │   │   ├── Product.js                      
-│   │   │   ├── Customer.js
-│   │   │   ├── Warehouse.js                                  
-│   │   │   ├── Inventory.js
-│   │   │   ├── PurchaseOrder.js
-│   │   │   ├── PurchaseOrderItems.js
-│   │   │   ├── SaleOrder.js
-│   │   │   ├── SaleOrderItems.js
+│   │   │   ├── User.js                              
+│   │   │   ├── Category.js
+│   │   │   ├── Supplier.js                      
+│   │   │   ├── Product.js
+│   │   │   ├── sale.js        
+│   │   │   ├── SaleItem.js                          
+│   │   │   ├── Purchase.js
+│   │   │   ├── PurchaseItem.js
 │   │   │   ├── StockMovement.js
-│   │   │   ├── User.js
-│   │   │   ├── AuditLog.js
-│   │   │   └── Setting.js
-│   │   ├── controllers/                                 # Handle request & response, Call service
-│   │   │   ├── authController.js              
-│   │   │   ├── ProductController.js
-│   │   │   ├── OrderController.js
-│   │   │   └── inventoryController.js 
-│   │   ├── routes/                                      # API endpoint , Connect to controllers
-│   │   │   ├── authRoutes.js              
-│   │   │   ├── productRoute.js
-│   │   │   ├── orderRoutes.js
-│   │   │   └── inventoryRoutes.js 
+│   │   │   ├── Log.js
+│   │   │   ├── Settings.js
+│   │   │   └── index.js
 │   │   ├── services/                                    # Business logic layer , Keeps controller clean     
-│   │   │   ├── productService.js              
-│   │   │   ├── orderService.js
-│   │   │   └── inventoryService.js 
-│   │   ├── middlewares/                                 # Authentication(JWT) , Role-based access , Error handling
+│   │   │   ├── userService.js              
+│   │   │   ├── productService.js    
+│   │   │   ├── inventoryService.js
+│   │   │   ├── salesService.js 
+│   │   │   ├── purchaseService.js
+│   │   │   ├── stockService.js
+│   │   │   └── logService.js 
+│   │   ├── controllers/                                 # Handle HTTP Request & Reponse
+│   │   │   ├── usersController.js      
+│   │   │   ├── categoryController.js        
+│   │   │   ├── supplierController.js
+│   │   │   ├── productController.js
+│   │   │   ├── saleController.js
+│   │   │   ├── purchaseController.js
+│   │   │   ├── stockController.js
+│   │   │   ├── logController.js
+│   │   │   └── settingscontroller.js 
+│   │   ├── routes/                                      # API Endpoint
+│   │   │   ├── index.js              
+│   │   │   ├── userRoutes.js         
+│   │   │   ├── categoryRoutes.js         
+│   │   │   ├── supplierRoutes.js         
+│   │   │   ├── productRoutes.js         
+│   │   │   ├── salesRoutes.js         
+│   │   │   ├── purchaseRoute.js
+│   │   │   ├── stockRoutes.js
+│   │   │   ├── logRoutes.js         
+│   │   │   └── settingRoutes.js 
+│   │   ├── middlewares/                                 # Authentication(JWT) , Role-based access , Error handling / Authorization
 │   │   │   ├── authMiddleware.js              
 │   │   │   ├── roleMiddleware.js
-│   │   │   ├── errorMiddleware.js
-│   │   │   └── validateMiddleware.js 
-│   │   ├── utils/                                       # Helper function, Token generation, Logging
+│   │   │   └── errorMiddleware.js
+│   │   ├── utils/                                       # Helper Utilities
 │   │   │   ├── generateToken.js
 │   │   │   ├── hashPassword.js
 │   │   │   └── logger.js            
-│   │   └── validations/                                 # Request body validation(Joi / Express-validator)
+│   │   └── validations/                                 # Request validation
 │   │       ├── productValidation.js
 │   │       ├── userValidation.js
 │   │       └── orderValidation.js  
@@ -109,9 +120,7 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   ├── pages/                                           # Route-level pages (feature grouped)
 │   │   │   ├── auth/    
 │   │   │   │   ├── Login.jsx
-│   │   │   │   ├── Register.jsx
-│   │   │   │   ├── ForgotPassword.jsx     
-│   │   │   │   └── ResetPassword.jsx
+│   │   │   │   └── Register.jsx
 │   │   │   ├── Dashboard.jsx
 │   │   │   ├── products.jsx
 │   │   │   ├── Inventory.jsx
