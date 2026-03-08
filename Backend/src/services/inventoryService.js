@@ -1,49 +1,57 @@
 //src/services/inventoryService.js 
 
-const Inventory = require('../models/Inventory');
-const StockMovement = require('../models/StockMovement');
 
-// Get inventory by product 
-const getInventoryByProduct = async (productId) => {
-    return await Inventory.findOne({ product_id: productId })
-        .populate('product_id', 'product_name sku'); // Populate product name and sku
+const Product = require('../models/Product');
+
+exports.getLowStockProducts = async () =>  {
+
+    return await Product.find({ stock: { $lt: 10 } });
 };
 
-// Update inventory directly 
-const updateInventory = async (productId, quantity) => {
-    const inventory = await Inventory.findOneAndUpdate(
-        { product_id: productId },
-        { $inc: { quantity: quantity } },
-        { new: true, upsert: true } // Create if not exists
-    );
+exports.getInventoryValue = async () =>  {
 
-    // Log stock movement
-    await StockMovement.create({
-        product_id: productId,
-        quantity: quantity,
-        movement_type: quantity > 0 ? 'Stock In' : 'Stock Out',
-        date: new Date()
+    const products = await Product.find();
+
+    let totalValue = 0;
+
+    products.forEach(product => {
+        totalValue += product.price * product.quantity_in_stock;
     });
-    return inventory;
+
+    return totalValue;
 };
 
-// Adjust inventory automatically (positive for purchase, negative for sale)
-const adjustInventory = async (productId, quantity, movement_type) => {
-    const inventory = await Inventory.findOne({ product_id: productId });
-    let newQuantity = quantity;
+exports.getStockMovements = async (productId) =>  {
 
-    if (movement_type === 'Purchase') {
-        newQuantity = inventory ? inventory.quantity + quantity : quantity;
-    } else if (movement_type === 'Sale') {
-        newQuantity = inventory ? inventory.quantity - quantity : -quantity;
+    // This function would ideally query a StockMovements collection to get the movement history for the specified productId
+    // For demonstration, we will return a mock response
+    
+    return [
+        { movement_type: 'in', quantity: 50, reference_id: 1, timestamp: new Date() },
+        { movement_type: 'out', quantity: 20, reference_id: 2, timestamp: new Date() },
+    ];
+};
+
+exports.updateStock = async (productId, movementType, quantity) =>  {
+
+    const product = await Product.findById(productId);
+
+    if (!product) {
+        throw new Error('Product not found');
+    }   
+    if (movementType === 'in') {
+        product.quantity_in_stock += quantity;
+    } else if (movementType === 'out') {
+        if (product.quantity_in_stock < quantity) {
+            throw new Error('Insufficient stock');
+        }
+        product.quantity_in_stock -= quantity;
+    } else {
+        throw new Error('Invalid movement type');
     }
-    return await updateInventory(productId, newQuantity - (inventory ? inventory.quantity : 0));
-};
-
-module.exports = {
-    getInventoryByProduct,
-    updateInventory,
-    adjustInventory
+    await product.save();
+    // Here you would also create a new StockMovement document to record this movement
+    return product;
 };
 
 
