@@ -94,7 +94,7 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   ├── app/                                         # App initialization
 │   │   │   ├── store.js  
 │   │   │   ├── Provider.jsx
-│   │   │   └── App.jsx.jsx
+│   │   │   └── App.jsx
 │   │   ├── routes/                                      # Routing system
 │   │   │   ├── AppRoutes.jsx    
 │   │   │   └── PrivateRoute.jsx
@@ -192,4 +192,5 @@ Full-Stack-Inventory-Management-System(IMS)
 ├── .env                                      
 ├── package.json
 ├── docker-compose.yml
+
 └── README.md                                  
