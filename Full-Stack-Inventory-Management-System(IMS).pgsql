@@ -68,104 +68,80 @@ Full-Stack-Inventory-Management-System(IMS)
 ├── frontend/ (React • JavaScript • HTML • CSS) components -> pages -> hooks -> services -> routes -> utils -> App.jsx
 │   │
 │   ├── src/
-│   │   ├── components/                                         # Reusable UI & composed components
-│   │   │   ├── ui/                            
-│   │   │   │   ├── Button.jsx
-│   │   │   │   ├── Card.jsx
-│   │   │   │   ├── Input.jsx
-│   │   │   │   ├── Select.jsx                          
-│   │   │   │   ├── Badge.jsx                    
-│   │   │   │   ├── Modal.jsx                              
-│   │   │   │   ├── Table.jsx
-│   │   │   │   ├── Alert.jsx                      
-│   │   │   │   ├── Tooltip.jsx                    
-│   │   │   │   ├── Tab.jsx  
-│   │   │   │   ├── Accordion.jsx                  
-│   │   │   │   ├── Breadcrumb.jsx               
-│   │   │   │   ├── Pagination.jsx     
-│   │   │   │   ├── Loader.jsx                      
-│   │   │   │   └── index.js                     
-│   │   │   ├── layout/                            
-│   │   │   │   ├── MainLayout.jsx                                    # Wrapper layout (Header + Sidebar + content)
-│   │   │   │   ├── AuthLayout.jsx
-│   │   │   │   ├── Header.jsx                                        
-│   │   │   │   ├── Sidebar.jsx                                       
-│   │   │   │   ├── Footer.jsx                                        
-│   │   │   │   ├── PageContainer.jsx                                
-│   │   │   │   └── ProtectedRoute.jsx                               
-│   │   │   ├── forms/ 
-│   │   │   │   ├── ProductForm.jsx                 
-│   │   │   │   ├── CategoryForm.jsx
-│   │   │   │   ├── SupplierForm.jsx
-│   │   │   │   ├── CustomerForm.jsx
-│   │   │   │   ├── WarehouseForm.jsx
-│   │   │   │   ├── PurchaseOrderForm.jsx
-│   │   │   │   ├── SalesOrderForm.jsx
-│   │   │   │   ├── StockAdjustmentForm.jsx
-│   │   │   │   └── UserForm.jsx
-│   │   │   ├── charts/ 
-│   │   │   │   ├── BarChart.jsx                              # Generic Bar Chart
-│   │   │   │   ├── LineChart.jsx                             # Generic Line Chart
-│   │   │   │   ├── PieChart.jsx                              # Generic Pie / Doughtnut Chart
-│   │   │   │   ├── Inventory.jsx                             # Stock levels per product / Category
-│   │   │   │   ├── SalesChart.jsx                            # Sales trends over time 
-│   │   │   │   ├── PurchaseChart.jsx                         # Purchase trends over time 
-│   │   │   │   └── ChartWrapper.jsx                          # Optional wrapper for consistent styling/layout
-│   │   │   │       ├── 
-│   │   │   │       ├── 
-│   │   │   │       └── 
-│   │   │   └── styles/
-│   │   │       └── globals.css
-│   │   │
-│   │   ├── pages/                                           # Route-level pages (feature grouped)
-│   │   │   ├── auth/    
-│   │   │   │   ├── Login.jsx
-│   │   │   │   └── Register.jsx
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── products.jsx
-│   │   │   ├── Inventory.jsx
-│   │   │   ├── Categories.jsx
-│   │   │   ├── Suppliers.jsx
-│   │   │   ├── Customer.jsx
-│   │   │   ├── PurchaseOrder.jsx
-│   │   │   ├── SalesOrder.jsx
-│   │   │   ├── Report.jsx
-│   │   │   ├── setting.jsx
-│   │   │   ├── Login.jsx
-│   │   │   ├── Register.jsx
-│   │   │   └── NotFound.jsx 
-│   │   │      
+│   │   ├── api/                                               # API communication layer (Axios)
+│   │   │   ├── axiosClient.js  
+│   │   │   ├── userApi.js           
+│   │   │   ├── productApi.js
+│   │   │   ├── categoryApi.js
+│   │   │   ├── supplierApi.js
+│   │   │   ├── salesApi.js
+│   │   │   ├── purchaseApi.js
+│   │   │   ├── stockApi.js
+│   │   │   ├── logApi.js
+│   │   │   └── settingsApi.js
 │   │   ├── services/                                          # All backend API calls
 │   │   │   ├── authService.js    
-│   │   │   ├── productService.js     
-│   │   │   ├── stockService.js            
+│   │   │   ├── productService.js               
 │   │   │   ├── salesService.js
-│   │   │   ├── purchaseService.js
-│   │   │   └── reportService.js
-│   │   ├── context/                                           # Global state management (auth, user data)
-│   │   │   ├── AuthContext.jsx
-│   │   │   ├── ProductContext.jsx
-│   │   │   ├── SaleContext.jsx
-│   │   │   ├── PurchaseContext.jsx
-│   │   │   ├── StockContext.jsx 
-│   │   │   └── ReportContext.jsx
+│   │   │   └── purchaseService.js
+│   │   │
+│   │   ├── pages/                                             # Route-level pages (feature grouped)
+│   │   │   ├── Dashboard/
+│   │   │   │   └── Layout.jsx  
+│   │   │   ├── Products/
+│   │   │   │   ├── ProductList.jsx                              
+│   │   │   │   ├── ProductForm.jsx                             
+│   │   │   │   └── ProductDetails.jsx  
+│   │   │   ├── Categories/
+│   │   │   │   └── CategoryPage.jsx     
+│   │   │   ├── Suppliers/
+│   │   │   │   └── SupplierPage.jsx 
+│   │   │   ├── Sales/
+│   │   │   │   ├── SalesPage.jsx                             
+│   │   │   │   └── SaleDetails.jsx
+│   │   │   ├── Purchases/
+│   │   │   │   └── PurchasePage.jsx
+│   │   │   ├── Inventory/
+│   │   │   │   └── InventoryPage.jsx 
+│   │   │   ├── Logs/
+│   │   │   │   └── LogsPage.jsx
+│   │   │   ├── Setting/
+│   │   │   │   └── SettingsPage.jsx
+│   │   │   └── Auth/
+│   │   │       ├── Login.jsx
+│   │   │       └── Register.jsx
+│   │   ├── components/                                         # Reusable UI & composed components      
+│   │   │   ├── layout/                                                              
+│   │   │   │   ├── Navber.jsx                                    
+│   │   │   │   ├── Sidebar.jsx                                
+│   │   │   │   └── Layout.jsx                           
+│   │   │   ├── commons/ 
+│   │   │   │   ├── Table.jsx
+│   │   │   │   ├── Modal.jsx
+│   │   │   │   ├── Button.jsx
+│   │   │   │   └── Loader.jsx
+│   │   │   ├── charts/ 
+│   │   │   │   ├── SaleChart.jsx                             # Generic Bar Chart
+│   │   │   │   └── InventoryChart.jsx
+│   │   │   └── styles/
+│   │   │       └── globals.css
+│   │   │      
+│   │   ├── store/                                           # Global state management (auth, user data)
+│   │   │   ├── index.js
+│   │   │   ├── authSlice.js
+│   │   │   ├── productSlice.js
+│   │   │   ├── saleSlice.js
+│   │   │   └── inventorySlice.js
 │   │   ├── hooks/                                             # Custom reusable logic
 │   │   │   ├── useAuth.js
 │   │   │   ├── useProduct.js
-│   │   │   ├── useSales.js
-│   │   │   ├── usePurchase.js
-│   │   │   ├── useStock.js 
-│   │   │   └── useReports.js
+│   │   │   └── useSales.js
 │   │   ├── routes/                                            # React Router cofiguration
-│   │   │   ├── productRoutes.js
-│   │   │   ├── salesRoutes.js
-│   │   │   ├── purchaseRoutes.js
-│   │   │   ├── stockRoutes.js
-│   │   │   └── reportRoutes.js
+│   │   │   ├── AppRoutes.jsx
+│   │   │   └── PrivateRoute.js
 │   │   ├── utils/                                             # Helper function (formatting validation)
-│   │   │   ├── tokenStorage.js
-│   │   │   ├── validators.js
-│   │   │   ├── permissions.js
+│   │   │   ├── formatCurrency.js
+│   │   │   ├── formatDate.js
 │   │   │   └── constants.js
 │   │   ├── App.jsx                       
 │   │   └── main.jsx
