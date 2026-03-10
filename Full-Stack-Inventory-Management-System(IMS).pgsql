@@ -94,7 +94,7 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   ├── app/                                         # App initialization
 │   │   │   ├── store.js  
 │   │   │   ├── Provider.jsx
-│   │   │   └── App.jsx
+│   │   │   └── App.jsx.
 │   │   ├── routes/                                      # Routing system
 │   │   │   ├── AppRoutes.jsx    
 │   │   │   └── PrivateRoute.jsx
@@ -166,11 +166,60 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │           └── SettingsPage.jsx
 │   │   ├── components/                                  # Global reuable components    
 │   │   │   ├── ui/                                                              
-│   │   │   │   ├── Button.jsx                                    
-│   │   │   │   ├── Modal.jsx
-│   │   │   │   ├── Toble.jsx                                    
-│   │   │   │   ├── Loader.jsx                                
-│   │   │   │   └── Input.jsx                           
+│   │   │   │   ├── Button/ 
+│   │   │   │   │   ├── Button.jsx      
+│   │   │   │   │   ├── Button.css
+│   │   │   │   │   └── index.js                     
+│   │   │   │   ├── Input/
+│   │   │   │   │   ├── Input.jsx      
+│   │   │   │   │   ├── Input.css
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── Select/
+│   │   │   │   │   ├── Select.jsx      
+│   │   │   │   │   ├── Select.css
+│   │   │   │   │   └── index.js                                  
+│   │   │   │   ├── Checkbox/
+│   │   │   │   │   ├── Checkbox.jsx      
+│   │   │   │   │   ├── Checkbox.css
+│   │   │   │   │   └── index.js                              
+│   │   │   │   ├── Table/
+│   │   │   │   │   ├── Table.jsx      
+│   │   │   │   │   ├── TableHeader.jsx
+│   │   │   │   │   ├── TableRow.jsx
+│   │   │   │   │   ├── TableCell.jsx
+│   │   │   │   │   ├── Table.css
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── Modal/
+│   │   │   │   │   ├── Modal.jsx
+│   │   │   │   │   ├── ModalHeader.jsx      
+│   │   │   │   │   ├── ModalBody.jsx
+│   │   │   │   │   ├── ModalFooter.jsx
+│   │   │   │   │   ├── Modal.css
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── Card/
+│   │   │   │   │   ├── Card.jsx      
+│   │   │   │   │   ├── CardHeader.jsx
+│   │   │   │   │   ├── CardBody.jsx
+│   │   │   │   │   ├── CardFoodter.jsx
+│   │   │   │   │   ├── Card.css
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── Badge/
+│   │   │   │   │   ├── Badge.jsx      
+│   │   │   │   │   ├── Badge.css
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── Spinner/
+│   │   │   │   │   ├── Spinner.jsx      
+│   │   │   │   │   ├── Spinner.css
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── Loader/
+│   │   │   │   │   ├── Loader.jsx      
+│   │   │   │   │   ├── Loader.css
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── Pagination/
+│   │   │   │   │   ├── Pagination.jsx 
+│   │   │   │   │   ├── Pagination.css     
+│   │   │   │   │   └── index.js
+│   │   │   │   └── index.js                           
 │   │   │   ├── layout/ 
 │   │   │   │   ├── Navbar.jsx
 │   │   │   │   ├── Sidebar.jsx
@@ -192,5 +241,4 @@ Full-Stack-Inventory-Management-System(IMS)
 ├── .env                                      
 ├── package.json
 ├── docker-compose.yml
-
 └── README.md                                  
