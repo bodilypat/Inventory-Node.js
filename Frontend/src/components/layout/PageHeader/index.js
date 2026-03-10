@@ -1,1 +1,4 @@
-export { default} from './PageHeader'; 
+//src/components/layout/index.js 
+
+export { default } from './PageHeader';
+
