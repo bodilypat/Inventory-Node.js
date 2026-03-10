@@ -1,0 +1,67 @@
+/* src/components/ui/Spinner.css */ 
+
+.spinner-wrapper {
+    display: inline-flex;
+    align-items: center;
+}
+.spinner-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* spinner base */
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+/* sizes */
+.spinner-small {
+    width: 16px;
+    height: 16px;
+    border-width: 3px;
+}
+.spinner-medium {
+    width: 24px;
+    height: 24px;
+    border-width: 4px;
+}
+.spinner-large {
+    width: 32px;
+    height: 32px;
+    border-width: 5px;
+}
+/* variants */
+.spinner-primary {
+    border-top-color: #007bff;
+}
+.spinner-success {
+    border-top-color: #28a745;
+}
+.spinner-danger {
+    border-top-color: #dc3545;
+}
+.spinner-warning {
+    border-top-color: #ffc107;
+}
+.spinner-info {
+    border-top-color: #17a2b8;
+}
+.spinner-light {
+    border-top-color: #f8f9fa;
+}
+.spinner-dark {
+    border-top-color: #343a40;
+}
+/* animation */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
