@@ -221,9 +221,27 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │   │   │   └── index.js
 │   │   │   │   └── index.js                           
 │   │   │   ├── layout/ 
-│   │   │   │   ├── Navbar.jsx
-│   │   │   │   ├── Sidebar.jsx
-│   │   │   │   └── DashboardLayout.jsx
+│   │   │   │   ├── Navbar/
+│   │   │   │   │   ├── Navbar.jsx 
+│   │   │   │   │   ├── Navbar.css     
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── Sidebar/
+│   │   │   │   │   ├── Sidebar.jsx 
+│   │   │   │   │   ├── Sidebar.css     
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── PageHeader/
+│   │   │   │   │   ├── PageHeader.jsx 
+│   │   │   │   │   ├── PageHeader.css     
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── Breadcrumb/
+│   │   │   │   │   ├── Breadcrumb.jsx 
+│   │   │   │   │   ├── Breadcrumb.css     
+│   │   │   │   │   └── index.js
+│   │   │   │   ├── DashboardLayout/
+│   │   │   │   │   ├── DashboardLayout.jsx 
+│   │   │   │   │   ├── DashboardLayout.css     
+│   │   │   │   │   └── index.js
+│   │   │   │   └── index.js
 │   │   │   └── charts/
 │   │   │       ├── SaleChart.jsx
 │   │   │       └── InventoryChart.jsx
