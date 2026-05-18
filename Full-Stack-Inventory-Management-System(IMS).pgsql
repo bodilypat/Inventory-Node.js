@@ -1,17 +1,20 @@
 Full-Stack-Inventory-Management-System(IMS)  
-├── backend(Node.js)   Client(Post/api)->Routes -> Controllers -> Services -> Model -> MongoDB
+├── backend(Node.js + Express)   Client(Post/api)->Routes -> Controllers -> Services -> Model -> MongoDB
 │   ├── src/
 │   │   ├── app/                                        # Application setup
-│   │   │   ├── app.js
-│   │   │   ├── server.js
-│   │   │   └── routes.js
-│   │   ├── config/                                     # Environment & database configs
-│   │   │   ├── db.js
-│   │   │   ├── env.js
-│   │   │   └── index.js
+│   │   │   ├── app.js                                  # Express app config
+│   │   │   ├── server.js                               # Server bootstrap
+│   │   │   └── routes.js                               # Central route aggregator
 │   │   │
-│   │   ├── modules/                                     # Featue modules (Domain-based)
+│   │   ├── config/                                     
+│   │   │   ├── db.js                                   # MongoDB connection
+│   │   │   ├── env.js                                  # Environment loader
+│   │   │   └── index.js                                # Config exports
+│   │   │
+│   │   ├── modules/                                    # DOMAIN-DRIVER FEATURES (matches frontend/fetures)
+│   │   │
 │   │   │   ├── auth/      
+│   │   │   │   ├── auth.model.js
 │   │   │   │   ├── auth.controller.js                              
 │   │   │   │   ├── auth.service.js
 │   │   │   │   ├── auth.routes.js
@@ -50,19 +53,25 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │   │   ├── purchaseItem.model.js
 │   │   │   │   ├── purchase.controller.js
 │   │   │   │   ├── purchase.service.js
-│   │   │   │   └── purchase.routes.js
+│   │   │   │   ├── purchase.routes.js
+│   │   │   │   └── purchase.validation.js
 │   │   │   ├── inventory/
 │   │   │   │   ├── stockMovement.model.js
+│   │   │   │   ├── inventory.controller.js
 │   │   │   │   ├── inventory.service.js
-│   │   │   │   └── inventory.controller.js
+│   │   │   │   ├── inventory.routes.js
+│   │   │   │   └── inventory.validation.js
 │   │   │   ├── logs/
 │   │   │   │   ├── log.model.js
 │   │   │   │   ├── log.controller.js
-│   │   │   │   └── log.service.js
+│   │   │   │   ├── log.service.js
+│   │   │   │   └── log.routes.js
 │   │   │   └── settings/
 │   │   │       ├── settings.model.js
 │   │   │       ├── settings.controller.js
-│   │   │       └── settings.service.js 
+│   │   │       ├── settings.service.js 
+│   │   │       ├── settings.routes.js
+│   │   │       └── settings.validation.js
 │   │   │
 │   │   ├── middlewares/                                 # Global middlewares
 │   │   │   ├── auth.middleware.js              
@@ -74,189 +83,346 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │   ├── generateToken.js
 │   │   │   ├── hashPassword.js
 │   │   │   ├── responseHandler.js
-│   │   │   └── logger.js            
+│   │   │   ├── logger.js
+│   │   │   └── asyncHandler.js            
 │   │   │
 │   │   ├── contants/                                    # Global constants
 │   │   │   ├── roles.js
-│   │   │   └── httpStatus.js      
+│   │   │   ├── httpStatus.js
+│   │   │   └── inventoryEvents.js      
 │   │   │      
-│   │   └── database/                                    # Request validation
-│   │       └── seed.js  
+│   │   └── database/  
+│   │       ├── seed.js                                
+│   │       └── index.js
 │   │                         
-│   ├── tests/                                           # Unit & integration tests
-│   ├── .env
-│   ├── package.json
-│   └── README.md
+│   ├── tests/   
+│   │   ├── unit/
+│   │   ├── integration/
+│   │   └── e2e/    
+│   │                             
+│   └── package.json
 │   
-├── frontend/ (React • JavaScript • HTML • CSS) components -> pages -> hooks -> services -> routes -> utils -> App.jsx
+├── frontend/(React • JavaScript • HTML • CSS) components -> pages -> hooks -> services -> routes -> utils -> App.jsx
+│   │
+│   ├── public/
+│   │   ├── index.html
+│   │   ├── favicon.ico
+│   │   └── robots.txt
 │   │
 │   ├── src/
-│   │   ├── app/                                         # App initialization
-│   │   │   ├── store.js  
-│   │   │   ├── Provider.jsx
-│   │   │   └── App.jsx.
-│   │   ├── routes/                                      # Routing system
-│   │   │   ├── AppRoutes.jsx    
-│   │   │   └── PrivateRoute.jsx
-│   │   ├── api/                                         # API configuration
-│   │   │   ├── axiosClient.js    
-│   │   │   └── endpoint.js
+│   │   ├── app/                                        
+│   │   │   ├── main.jsx
+│   │   │   ├── App.jsx
+│   │   │   │
+│   │   │   ├── providers/
+│   │   │   │   ├── AuthProvider.jsx
+│   │   │   │   ├── ThemeProvider.jsx
+│   │   │   │   ├── QueryProvider.jsx
+│   │   │   │   └── NotificationProvider.jsx
+│   │   │   │
+│   │   │   ├── routes/
+│   │   │   │   ├── AppRoutes.jsx
+│   │   │   │   ├── ProtectedRoute.jsx
+│   │   │   │   ├── AuthRoute.jsx
+│   │   │   │   └── routeConfig.js 
+│   │   │   │ 
+│   │   │   ├── store/
+│   │   │   │   ├── store.js
+│   │   │   │   ├── rootReducer.js
+│   │   │   │   └── slices/
+│   │   │   │       ├── authSlice.js
+│   │   │   │       ├── inventorySlice.js
+│   │   │   │       ├── orderSlice.js
+│   │   │   │       ├── supplierSlice.js
+│   │   │   │       ├── dashboardSlice.js
+│   │   │   │       └── reportSlice.js
+│   │   │   │ 
+│   │   │   └── config/
+│   │   │       ├── env.js
+│   │   │       ├── apiConfig.js
+│   │   │       └── appConfig.js
 │   │   │
-│   │   ├── features/                                    # Feature-based modules
-│   │   │   ├── auth/                                                              
-│   │   │   │   ├── api/                                    
-│   │   │   │   │   └── authApi.js
-│   │   │   │   ├── hooks/                                    
-│   │   │   │   │   └── useAuth.js
-│   │   │   │   ├── pages/        
-│   │   │   │   │   ├── Login.jsx  
-│   │   │   │   │   └── Register.jsx                        
-│   │   │   │   ├── authSlice.js
-│   │   │   │   └── authService.js
-│   │   │   ├── products/                                                              
-│   │   │   │   ├── api/                                    
-│   │   │   │   │   └── productApi.js
-│   │   │   │   ├── components/                                    
-│   │   │   │   │   ├── ProductTable.jsx 
-│   │   │   │   │   └── ProductForm.jsx
-│   │   │   │   ├── pages/        
-│   │   │   │   │   ├── ProductList.jsx
-│   │   │   │   │   └── ProductDetials.jsx
-│   │   │   │   ├── hooks/                                    
-│   │   │   │   │   └── useProduct.js
-│   │   │   │   ├── productSlice.js
-│   │   │   │   └── productService.js
-│   │   │   ├── sales/                                                              
-│   │   │   │   ├── api/                                    
-│   │   │   │   │   └── saleApi.js
-│   │   │   │   ├── components/                                    
-│   │   │   │   │   └── SalesTable.jsx
-│   │   │   │   ├── pages/        
-│   │   │   │   │   ├── SalesPage.jsx
-│   │   │   │   │   └── SaleDetails.jsx
-│   │   │   │   ├── hooks/                                    
-│   │   │   │   │   └── useSales.js
-│   │   │   │   ├── saleSlice.js
-│   │   │   │   └── salesService.js
-│   │   │   ├── purchases/
-│   │   │   │   ├── api/                                    
-│   │   │   │   │   └── purchaseApi.js
-│   │   │   │   └── pages/
-│   │   │   │       └── PurchasePage.jsx
-│   │   │   ├── suppliers/
-│   │   │   │   ├── api/                                    
-│   │   │   │   │   └── supplierApi.js
-│   │   │   │   └── pages/
-│   │   │   │       └── SupplierPage.jsx
-│   │   │   ├── categories/
-│   │   │   │   ├── api/                                    
-│   │   │   │   │   └── categoryApi.js
-│   │   │   │   └── pages/
-│   │   │   │       └── CategoryPage.jsx
-│   │   │   ├── inventory/
-│   │   │   │   ├── api/                                    
-│   │   │   │   │   └── stockApi.js
-│   │   │   │   ├── pages/                                    
-│   │   │   │   │   └── InventoryPage.jsx
-│   │   │   │   └── inventorySlice.js  
-│   │   │   └── settings/
-│   │   │       ├── api/
-│   │   │       │   └── settingsApi.js
-│   │   │       └── pages/
-│   │   │           └── SettingsPage.jsx
-│   │   ├── components/                                  # Global reuable components    
-│   │   │   ├── ui/                                                              
-│   │   │   │   ├── Button/ 
-│   │   │   │   │   ├── Button.jsx      
-│   │   │   │   │   ├── Button.css
-│   │   │   │   │   └── index.js                     
-│   │   │   │   ├── Input/
-│   │   │   │   │   ├── Input.jsx      
-│   │   │   │   │   ├── Input.css
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── Select/
-│   │   │   │   │   ├── Select.jsx      
-│   │   │   │   │   ├── Select.css
-│   │   │   │   │   └── index.js                                  
-│   │   │   │   ├── Checkbox/
-│   │   │   │   │   ├── Checkbox.jsx      
-│   │   │   │   │   ├── Checkbox.css
-│   │   │   │   │   └── index.js                              
-│   │   │   │   ├── Table/
-│   │   │   │   │   ├── Table.jsx      
-│   │   │   │   │   ├── TableHeader.jsx
-│   │   │   │   │   ├── TableRow.jsx
-│   │   │   │   │   ├── TableCell.jsx
-│   │   │   │   │   ├── Table.css
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── Modal/
-│   │   │   │   │   ├── Modal.jsx
-│   │   │   │   │   ├── ModalHeader.jsx      
-│   │   │   │   │   ├── ModalBody.jsx
-│   │   │   │   │   ├── ModalFooter.jsx
-│   │   │   │   │   ├── Modal.css
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── Card/
-│   │   │   │   │   ├── Card.jsx      
-│   │   │   │   │   ├── CardHeader.jsx
-│   │   │   │   │   ├── CardBody.jsx
-│   │   │   │   │   ├── CardFoodter.jsx
-│   │   │   │   │   ├── Card.css
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── Badge/
-│   │   │   │   │   ├── Badge.jsx      
-│   │   │   │   │   ├── Badge.css
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── Spinner/
-│   │   │   │   │   ├── Spinner.jsx      
-│   │   │   │   │   ├── Spinner.css
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── Loader/
-│   │   │   │   │   ├── Loader.jsx      
-│   │   │   │   │   ├── Loader.css
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── Pagination/
-│   │   │   │   │   ├── Pagination.jsx 
-│   │   │   │   │   ├── Pagination.css     
-│   │   │   │   │   └── index.js
-│   │   │   │   └── index.js                           
-│   │   │   ├── layout/ 
-│   │   │   │   ├── Navbar/
-│   │   │   │   │   ├── Navbar.jsx 
-│   │   │   │   │   ├── Navbar.css     
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── Sidebar/
-│   │   │   │   │   ├── Sidebar.jsx 
-│   │   │   │   │   ├── Sidebar.css     
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── PageHeader/
-│   │   │   │   │   ├── PageHeader.jsx 
-│   │   │   │   │   ├── PageHeader.css     
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── Breadcrumb/
-│   │   │   │   │   ├── Breadcrumb.jsx 
-│   │   │   │   │   ├── Breadcrumb.css     
-│   │   │   │   │   └── index.js
-│   │   │   │   ├── DashboardLayout/
-│   │   │   │   │   ├── DashboardLayout.jsx 
-│   │   │   │   │   ├── DashboardLayout.css     
-│   │   │   │   │   └── index.js
-│   │   │   │   └── index.js
-│   │   │   └── charts/
-│   │   │       ├── SaleChart.jsx
-│   │   │       └── InventoryChart.jsx
-│   │   │      
-│   │   ├── hooks/                                       # Global shared hooks
+│   │   ├── layouts/
+│   │   │   ├── MainLayout.jsx
+│   │   │   ├── DashboardLayout.jsx
+│   │   │   ├── AuthLayout.jsx
+│   │   │   └── ErrorLayout.jsx
+│   │   │
+│   │   └── features
+│   │       │ 
+│   │       ├── auth/
+│   │       │   ├── api/
+│   │       │   │   ├── authApi.js
+│   │       │   │   ├── authEndpoint.js
+│   │       │   │   └── authTransformer.jsx
+│   │       │   ├── pages/
+│   │       │   │   ├── Login.jsx
+│   │       │   │   ├── Register.jsx
+│   │       │   │   ├── ForgotPassword.jsx
+│   │       │   │   ├── ResetPassword.jsx
+│   │       │   │   ├── VerifyEmail.jsx
+│   │       │   │   ├── SessionExpired.jsx 
+│   │       │   │   ├── Unauthorized.jsx
+│   │       │   │   └── TwoFactorAuth.jsx
+│   │       │   │ 
+│   │       │   ├── components/
+│   │       │   │   ├── Forms/
+│   │       │   │   │   ├── LoginForm.jsx
+│   │       │   │   │   ├── RegisterForm.jsx
+│   │       │   │   │   ├── ForgotPasswordForm.jsx
+│   │       │   │   │   └── ResetPasswordForm.jsx
+│   │       │   │   ├── ui/
+│   │       │   │   │   ├── AuthBanner.jsx
+│   │       │   │   │   ├── SocialLogin.jsx
+│   │       │   │   │   ├── AuthCard.jsx
+│   │       │   │   │   ├── AuthDivider.jsx
+│   │       │   │   │   └── PasswordStrength.jsx
+│   │       │   │   │
+│   │       │   │   ├── guards/
+│   │       │   │   │   ├── ProtectedRoute.jsx
+│   │       │   │   │   ├── AdminRoute.jsx
+│   │       │   │   │   ├── GuestRoute.jsx
+│   │       │   │   │   └── PermissionGuard.jsx
+│   │       │   │   └── session/
+│   │       │   │       ├── ProtectedRoute.jsx
+│   │       │   │       ├── DeviceHistory.jsx
+│   │       │   │       └── ActiveSessions.jsx
+│   │       │   ├── hooks/
+│   │       │   │   ├── useAuth.js
+│   │       │   │   ├── usePermissions.js
+│   │       │   │   ├── useSession.js
+│   │       │   │   ├── useRefreshToken.js
+│   │       │   │   └── useCurrentUser.js
+│   │       │   ├── services/
+│   │       │   │   ├── authService.js
+│   │       │   │   ├── tokenService.js
+│   │       │   │   ├── sessionServices.js
+│   │       │   │   ├── permissionService.js
+│   │       │   │   └── storageService.js
+│   │       │   ├── validations/
+│   │       │   │   ├── loginSchema.js 
+│   │       │   │   ├── registerSchema.js
+│   │       │   │   ├── passwordSchema.js
+│   │       │   │   └── otpSchema.js
+│   │       │   ├── constants/
+│   │       │   │   ├── authConstants 
+│   │       │   │   ├── authMessages.js
+│   │       │   │   └── authRoutes.js
+│   │       │   ├── permissions/
+│   │       │   │   ├── roles.js 
+│   │       │   │   ├── permission.js
+│   │       │   │   ├── accessMatrix.js
+│   │       │   │   └── polices.js
+│   │       │   ├── security/
+│   │       │   │   ├── csrf.js 
+│   │       │   │   ├── securityStorage.js
+│   │       │   │   ├── fingerprint.js
+│   │       │   │   └── tokenEncryption.js
+│   │       │   ├── utils/
+│   │       │   │   ├── authHelpers.js 
+│   │       │   │   ├── jwtHelpers.js
+│   │       │   │   ├── redirectHelpers.js
+│   │       │   │   └── sessionHelpers.js
+│   │       │   ├── tests/ 
+│   │       │   │   ├── unit/
+│   │       │   │   ├── integration/
+│   │       │   │   └── e2e/
+│   │       │   └── index.js
+│   │       │
+│   │       ├── inventory/
+│   │       │   ├── api/
+│   │       │   │   ├── inventoryApi.js
+│   │       │   │   ├── inventoryEndpoints.js
+│   │       │   │   ├── inventoryTransformers.js
+│   │       │   │   └── inventoryAdapters.js
+│   │       │   ├── pages/
+│   │       │   │   ├── Products.jsx
+│   │       │   │   ├── AddProducts.jsx
+│   │       │   │   ├── EditProduct.jsx
+│   │       │   │   ├── ProductDetails.jsx
+│   │       │   │   ├── InventoryDashboard.jsx
+│   │       │   │   ├── StockMovements.jsx 
+│   │       │   │   ├── LowStockMovements.jsx
+│   │       │   │   ├── InventoryAudit.jsx
+│   │       │   │   ├── WarehourseInventory.jsx
+│   │       │   │   ├── DamagedInventory.jsx 
+│   │       │   │   └── InventoryForecast.jsx
+│   │       │   │
+│   │       │   ├── components/
+│   │       │   │   ├── product/
+│   │       │   │   ├── inventory/
+│   │       │   │   ├── warehouse/
+│   │       │   │   ├── analytics/
+│   │       │   │   └── audit/
+│   │       │   ├── hooks/
+│   │       │   │   ├── useProduct.js
+│   │       │   │   ├── useInventory.js
+│   │       │   │   └── useInventoryStats.js
+│   │       │   ├── services/
+│   │       │   │   └── inventoryService.js
+│   │       │   ├── validations/
+│   │       │   │   └── InventoryValidators.jsx
+│   │       │   ├── utils/
+│   │       │   │   ├── inventoryHelpers.js
+│   │       │   │   └── stockCalculator.js
+│   │       │   └── types/
+│   │       │       └── inventory.types.js
+│   │       │
+│   │       ├── orders/
+│   │       │   ├── pages/
+│   │       │   │   ├── Orders.jsx
+│   │       │   │   ├── CreateOrder.jsx
+│   │       │   │   └── OrderDetails.jsx
+│   │       │   ├── components/
+│   │       │   │   ├── OrderForm.jsx
+│   │       │   │   ├── OrderTable.jsx
+│   │       │   │   ├── OrderStatusBadge.jsx
+│   │       │   │   ├── InvoicePreview.jsx 
+│   │       │   │   └── PaymentSummary.jsx
+│   │       │   ├── hooks/
+│   │       │   │   └── useOrders.js
+│   │       │   ├── services/
+│   │       │   │   └── orderService.js
+│   │       │   ├── validations/
+│   │       │   │   └── orderValidator.js
+│   │       │   └── utils/
+│   │       │       └── orderHelpers.js
+│   │       │
+│   │       ├── suppliers/
+│   │       │   ├── pages/
+│   │       │   │   ├── Suppliers.jsx
+│   │       │   │   ├── AddSupplier.jsx
+│   │       │   │   └── SupplierDetails.jsx
+│   │       │   ├── components/
+│   │       │   │   ├── SupplierForm.jsx
+│   │       │   │   ├── SupplierList.jsx 
+│   │       │   │   ├── SupplierCard.jsx
+│   │       │   │   └── SupplierTable.jsx
+│   │       │   ├── hooks/
+│   │       │   │   └── useSuppliers.js
+│   │       │   ├── services/
+│   │       │   │   └── supplierService.js
+│   │       │   ├── validations/
+│   │       │   │   └── supplierValidations.js
+│   │       │   └── utils/
+│   │       │       └── supplierHelpers.js
+│   │       │
+│   │       ├── dashboard/
+│   │       │   ├── pages/
+│   │       │   │   └── Dashboard.jsx
+│   │       │   ├── components/
+│   │       │   │   ├── StatsCard.jsx
+│   │       │   │   ├── SalesChart.jsx 
+│   │       │   │   ├── InventoryChart.jsx
+│   │       │   │   ├── RecentOrders.jsx
+│   │       │   │   ├── TopProducts.jsx
+│   │       │   │   └── RevenueAnalytics.jsx
+│   │       │   └── services/
+│   │       │       └── dashboardService.js
+│   │       │
+│   │       └── reports/
+│   │           ├── pages/
+│   │           │   └── Reports.jsx
+│   │           ├── components/
+│   │           │   ├── ReportFilters.jsx
+│   │           │   ├── ExportButtons.jsx 
+│   │           │   ├── ReportCharts.jsx 
+│   │           │   └── ReportTable.jsx
+│   │           ├── pages/
+│   │           │   └── Reports.jsx
+│   │           └── utils/
+│   │               └── reportHelpers.js
+│   │   
+│   ├── shared/
+│   │   │
+│   │   ├── components/
+│   │   │   ├── ui/
+│   │   │   │   ├── Button.jsx
+│   │   │   │   ├── Input.jsx
+│   │   │   │   ├── Select.jsx
+│   │   │   │   ├── Modal.jsx
+│   │   │   │   ├── Table.jsx
+│   │   │   │   ├── Loader.jsx
+│   │   │   │   ├── Pagination.jsx
+│   │   │   │   ├── Badge.jsx
+│   │   │   │   └── Tooltip.jsx
+│   │   │   │
+│   │   │   ├── navigation/
+│   │   │   │   ├── Navbar.jsx
+│   │   │   │   ├── Sidebar.jsx
+│   │   │   │   ├── Footer.jsx
+│   │   │   │   └── Breadcrumb.jsx
+│   │   │   │ 
+│   │   │   ├── feedback/
+│   │   │   │   ├── EmptyState.jsx
+│   │   │   │   ├── ErrorMessage.jsx
+│   │   │   │   ├── Toast.jsx
+│   │   │   │   └── ConfirmDialog.jsx
+│   │   │   │
+│   │   │   └── charts
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── useFetch.js
 │   │   │   ├── useDebounce.js
-│   │   │   └── usePagination.js
-│   │   ├── utils/                                       # Utility function
+│   │   │   ├── useModal.js
+│   │   │   ├── usePagination.js
+│   │   │   ├── useRealtime.js
+│   │   │   └── usePermissions.js 
+│   │   │
+│   │   ├── services/
+│   │   │   ├── api/
+│   │   │   │   ├── apiClient.js
+│   │   │   │   ├── axiosInstance.js
+│   │   │   │   ├── interceptors.js
+│   │   │   │   └── errorHandler.js
+│   │   │   ├── storage/
+│   │   │   ├── auth/
+│   │   │   ├── realtime/
+│   │   │   └── telemetry/
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── constants.js
+│   │   │   ├── helpers.js
+│   │   │   ├── validators.js
 │   │   │   ├── formatCurrency.js
 │   │   │   ├── formatDate.js
-│   │   │   ├── validation.js
-│   │   │   └── constants.js                       
-│   │   └── main.jsx
-│   └── public/                  
-├── .env                                      
-├── package.json
-├── docker-compose.yml
-└── README.md                                  
+│   │   │   ├── Logger.js
+│   │   │   └── security.js
+│   │   │
+│   │   ├── security/
+│   │   │   ├── roleGuards.js
+│   │   │   ├── sanitizeInput.js
+│   │   │   └── accessControl.js 
+│   │   ├── styles/
+│   │   │   ├── global.css
+│   │   │   ├── varibles.css
+│   │   │   └── themes/
+│   │   ├── assets/
+│   │   │   ├── images/
+│   │   │   ├── icons/
+│   │   │   └── logos/
+│   │   └── types/
+│   │       └── common.types.js
+│   │    
+│   ├── services/                              # GLOBAL DOMAIN LAYER
+│   │   ├── orderService.js
+│   │   ├── inventoryService.js
+│   │   ├── supplierService.js
+│   │   ├── dashboardService.js
+│   │   ├── reportService.js
+│   │   └── analyticsService.js
+│   │
+│   ├── styles/
+│   │   └── global.css
+│   ├── tests/
+│   │   ├── unit/
+│   │   ├── integration/
+│   │   └── e2e/
+│   └── package.json
+│
+├── .env
+├── .gitignore
+├── vit.config.js
+├── eslint.config.js
+├── prettier.config.js
+└── package.json
