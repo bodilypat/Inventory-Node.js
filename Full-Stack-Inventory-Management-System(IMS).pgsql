@@ -27,10 +27,12 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │   │   └── user.validation.js
 │   │   │   ├── products/        
 │   │   │   │   ├── product.model.js
-│   │   │   │   ├── product.controller.js
+│   │   │   │   ├── product.repository.js 
 │   │   │   │   ├── product.service.js
+│   │   │   │   ├── product.controller.js
 │   │   │   │   ├── product.routes.js
-│   │   │   │   └── product.validation.js          
+│   │   │   │   ├── product.validation.js  
+│   │   │   │   └── product.dto.js        
 │   │   │   ├── categories/
 │   │   │   │   ├── category.model.js
 │   │   │   │   ├── category.controller.js
