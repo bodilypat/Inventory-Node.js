@@ -1,4 +1,4 @@
-//src/modules/products/product.model.js 
+//src/modules/products/product.model.js
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
@@ -6,68 +6,75 @@ const productSchema = new mongoose.Schema(
         name: {
             type: String,
             required: true,
-            trim: true,
+            trime: true,
         },
 
         sku: {
             type: String,
             required: true,
-            unique: true,
+            uniques:t requestAnimationFrame,
+            uppdercase: true,
+            trim: true,
         },
 
         barcode: {
             type: String,
-            unique: true,
-            sparse: true,
+            trim: true,
+        },
+
+        description: {
+            type: String,
+            trim: true,
         },
 
         category: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Category",
+            ref: 'Categories',
         },
 
         supplier: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Supplier",
+            ref: 'Suppliers',
         },
 
-        quantity: {
+        price: {
             type: Number,
-            default: 0,
+            required: true,
             min: 0,
         },
 
         constPrice: {
             type: Number,
             required: true,
+            min: 0,
         },
 
-        sellingPrice: {
+        stockQuantity: {
             type: Number,
-            required: true,
+            default: 0,
+            min: 0,
         },
 
-        reorderLevel: {
+        minStockLevel: {
             type: Number,
             default: 5,
         },
-        
-        image: {
+
+        unit: {
             type: String,
+            default: 'pcs',
         },
 
-        isActive: {
-            type: Boolean,
-            default: true,
+        status: {
+            type: String,
+            enum: ['ACTIVE', 'INACTIVE'],
+            default:'ACTIVE',
         },
     },
+
     {
-        timestamps: true,
+        timestamp: true,
     }
 );
 
-const Product = mongoose.model("Product", productSchema);
-
-export default Product;
-
-
+module.exports = mongoose.model('Product', productSchama);
