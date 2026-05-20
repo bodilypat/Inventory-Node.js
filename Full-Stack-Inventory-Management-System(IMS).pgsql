@@ -11,8 +11,8 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │   ├── env.js                                  # Environment loader
 │   │   │   └── index.js                                # Config exports
 │   │   │
-│   │   ├── modules/                                    # DOMAIN-DRIVER FEATURES (matches frontend/fetures)
-│   │   │
+│   │   ├── modules/                                    # DOMAIN-DRIVER FEATURES (matches frontend/features)
+│   │   │   │
 │   │   │   ├── auth/      
 │   │   │   │   ├── auth.model.js
 │   │   │   │   ├── auth.controller.js                              
@@ -41,13 +41,13 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │   │   ├── supplier.controller.js
 │   │   │   │   ├── supplier.service.js
 │   │   │   │   └── supplier.routes.js
-│   │   │   ├── Sales/
+│   │   │   ├── sales/
 │   │   │   │   ├── sale.model.js
 │   │   │   │   ├── saleItem.model.js
-│   │   │   │   ├── sales.controller.js
-│   │   │   │   ├── sales.service.js
-│   │   │   │   ├── sales.routes.js
-│   │   │   │   └── sales.validation.js
+│   │   │   │   ├── sale.controller.js
+│   │   │   │   ├── sale.service.js
+│   │   │   │   ├── sale.routes.js
+│   │   │   │   └── sale.validation.js
 │   │   │   ├── purchases/
 │   │   │   │   ├── purchase.model.js
 │   │   │   │   ├── purchaseItem.model.js
