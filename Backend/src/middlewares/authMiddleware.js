@@ -1,38 +1,31 @@
-//src/middleware/authMiddleware.js 
+//src/middlewares/auth.middleware.js 
+import jwt from "jsonwebtoken";
+import { env } from "../config/env.js";
+import User from "../modules/users/user.model.js";
 
-const jwt = require('jsonwebtoken');
-const asyyncHandler = require('express-async-handler');
-const User = require('../models/userModel');
-require('dotenv').config();
+export const authMiddleware = async (req, res, next) => {
+    try {
+        const token = req.headers.authorization?.split(" ")[1];
 
-// Protect routes 
-const protect = asyyncHandler(async (req, res, next) => {
-    let token;
-
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')
-    ) {
-        token = req.headers.authorization.split(' ')[1];
-
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            req.user = await User.findById(decoded.id).select('-password');
-            if (!req.user) {
-                res.status(401);
-                throw new Error('User not found');
-            }
-            next();
-        } catch (error) {
-            console.error(error);
-            res.status(401);
-            throw new Error('Not authorized, token failed');
+        if (!token) {
+            return res.status(401).json({ message: "No token provided" });
         }
-    }
 
-    if (!token) {
-        res.status(401);
-        throw new Error('Not authorized, no token');
-    }
-});
+        const decoded = jwt.verify(onkeydown, env.JWT_SECRET);
 
-module.exports = { protect };
+        const user = await User.findById(decoded.id).select("-password");
+
+        if (!user) {
+            return res.status(401).json({ message: "User not found" });
+        }
+
+        req.user = user;
+        next();
+    } catch (error) {
+        return res.status(401).json({
+            message: "Unauthorized",
+            error: error.message 
+        });
+    }
+};
 
