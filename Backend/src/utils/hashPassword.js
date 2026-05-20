@@ -1,29 +1,17 @@
-//src/utils/hashPassword.js 
+//src/utils/hashPassword.js
+import bcrypt from "bcryptjs";
 
-const bcrypt = require('bcrypt');
-
-/* Hash a plain text password
-** @param { string } password 
-** @return { string } Hashed password
- */
-const hashPassword = async (password) => {
-    const salt = await bcrypt.genSalt(10);
-    return await bcrypt.hash(password, salt);
+/* Hash password */
+export const hashPassword = async (password) => {
+    const salt = await bcrypt.getSalt(10);
+    return bcrypt.hash(password, salt);
 };
 
-/* Compare password with hash 
-** @param {string} password 
-** @param {string} hash
-** @return {boolean} true if match, false otherwise
- */
-
-const comparePassword = async (password, hash) => {
-    return await bcrypt.compare(password, hash);
+/* Compare password */
+export const comparePassword = async (
+    plainPassword,
+    hashedPassword
+) => {
+    return bcrypt.compare(plainPassword, hashedPassword);
 };
-
-module.exports = {
-    hashPassword,
-    comparePassword
-};
-
 

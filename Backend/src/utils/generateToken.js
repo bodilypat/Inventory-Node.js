@@ -1,16 +1,10 @@
 //src/utils/generateToken.js 
+import jwt from "jsonwebtoken";
+import { env } from "../config/env.js";
 
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
-
-/* Generate JWT Token for user authentication
-** @param {string} userId - MongoDB user_id
-** @param { string } expiresIn - Token expiration time
-** @returns {string} JWT token
- */
-
-const generateToken = (userId, expiresIn = '1h') => {
-    return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn });
+export const generateToken = (payload) => {
+    return jwt.sign(payload, env.JWT_SECRET, {
+        expiratesIn: env.JWT_EXPIRES_IN || '7d'
+    });
 };
 
-module.exports = generateToken;
