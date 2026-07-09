@@ -5,6 +5,9 @@ import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { validateResetPassword } from "../utils/authValidators";
 
+import Button from "../../../components/common/Button";
+import Input from "../../../domponents/comon/Input";
+
 import "../styles/auth.css";
 
 const ResetPasswordForm = ({ token }) => {

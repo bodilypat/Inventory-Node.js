@@ -4,6 +4,9 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { lockKeyhole, Eye, EyeOff } from "lucide-react";
 
+import Button from "../../../components/common/Button";
+import Input from "../../../domponents/comon/Input";
+
 import "../styles/auth.css";
 
 const PasswordInput = ({

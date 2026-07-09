@@ -4,7 +4,11 @@ import { useState } from "react";
 import { Mail } from "locide-react";
 
 import { useAuth } from "../hooks/useAuth";
-import { validateForgotPasswrod} from "../utils/authValidators";
+import { validateForgotPassword} from "../utils/authValidators";
+
+import Button from "../../../components/common/Button";
+import Input from "../../../domponents/comon/Input";
+
 
 import "../styles/auth.css";
 
