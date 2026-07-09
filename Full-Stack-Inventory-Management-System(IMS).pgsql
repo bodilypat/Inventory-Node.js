@@ -17,69 +17,134 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │       └── typography.css                        
 │   │   ├── components/                                     
 │   │   │   ├── common/  
-│   │   │   │   ├── Button.jsx
-│   │   │   │   ├── Input.jsx 
-│   │   │   │   ├── Select.jsx 
-│   │   │   │   ├── Textarea.jsx 
-│   │   │   │   ├── Checkbox.jsx
-│   │   │   │   ├── Radio.jsx
-│   │   │   │   ├── ButtonGroup.jsx 
 │   │   │   │   ├── Card.jsx
 │   │   │   │   ├── Modal.jsx 
-│   │   │   │   ├── Table.jsx 
-│   │   │   │   ├── Badge.jsx 
-│   │   │   │   ├── Alert.jsx
-│   │   │   │   ├── Toast.jsx
+│   │   │   │   ├── Avator.jsx 
+│   │   │   │   ├── EmptyState.jsx 
 │   │   │   │   ├── Loader.jsx
 │   │   │   │   ├── Spinner.jsx
-│   │   │   │   ├── SearchBar.jsx
-│   │   │   │   ├── Pagination.jsx 
-│   │   │   │   ├── Breadcrumb.jsx 
-│   │   │   │   ├── Avatar.jsx
-│   │   │   │   ├── EmptyState.jsx
+│   │   │   │   ├── Alert.jsx
+│   │   │   │   ├── Toast.jsx
+│   │   │   │   ├── Skeleton.jsx
+│   │   │   │   ├── Tooltip.jsx 
+│   │   │   │   ├── Divider.jsx 
 │   │   │   │   ├── ConfirmDialog.jsx
-│   │   │   │   ├── Common.css
-│   │   │   │   └── index.js     
+│   │   │   │   ├── index.js
+│   │   │   │   └── common.js     
+│   │   │   ├── forms/  
+│   │   │   │   ├── Button.jsx
+│   │   │   │   ├── ButtonGroup.jsx 
+│   │   │   │   ├── Input.jsx 
+│   │   │   │   ├── PasswordInput.jsx 
+│   │   │   │   ├── Textarea.jsx
+│   │   │   │   ├── MultiSelect.jsx
+│   │   │   │   ├── Checkbox.jsx 
+│   │   │   │   ├── Radio.jsx
+│   │   │   │   ├── Switch.jsx 
+│   │   │   │   ├── DatePicker.jsx 
+│   │   │   │   ├── TimePicker.jsx 
+│   │   │   │   ├── FileUpload.jsx
+│   │   │   │   ├── ImageUpload.jsx
+│   │   │   │   ├── SearchInput.jsx
+│   │   │   │   ├── FormField.jsx
+│   │   │   │   ├── FormLabel.jsx
+│   │   │   │   ├── FormError.jsx 
+│   │   │   │   ├── FormHelperText.jsx 
+│   │   │   │   ├── FormGroup.jsx
+│   │   │   │   ├── FormGroup.jsx 
+│   │   │   │   ├── index.jsx
+│   │   │   │   └── forms.css 
+│   │   │   ├── data-display/  
+│   │   │   │   ├── Table.jsx
+│   │   │   │   ├── DataTable.jsx
+│   │   │   │   ├── Pagination.jsx
+│   │   │   │   ├── SearchBar.jsx
+│   │   │   │   ├── SortButton.jsx
+│   │   │   │   ├── FilterMenu.jsx
+│   │   │   │   ├── EmptyTable.jsx
+│   │   │   │   ├── index.js
+│   │   │   │   └── table.css
+│   │   │   ├── navigation/  
+│   │   │   │   ├── Breadcrumb.jsx
+│   │   │   │   ├── Tabs.jsx
+│   │   │   │   ├── Dropdown.jsx
+│   │   │   │   ├── Menu.jsx
+│   │   │   │   └── index.js
+│   │   │   ├── overlay/  
+│   │   │   │   ├── Modal.jsx
+│   │   │   │   ├── Drawer.jsx
+│   │   │   │   ├── Popover.jsx
+│   │   │   │   ├── ContextMenu.jsx
+│   │   │   │   └── index.js
+│   │   │   ├── charts/  
+│   │   │   │   ├── BarChart.jsx
+│   │   │   │   ├── LineChart.jsx
+│   │   │   │   ├── PieChart.jsx
+│   │   │   │   ├── AreaChart.jsx
+│   │   │   │   ├── DoughnutChart.jsx
+│   │   │   │   ├── RadarChart.jsx
+│   │   │   │   └── index.js
 │   │   │   ├── layout/  
 │   │   │   │   ├── Navbar.jsx
 │   │   │   │   ├── Sidebar.jsx
-│   │   │   │   ├── Footer.jsx
-│   │   │   │   └── Layout.css
-│   │   │   └── inventory/    
-│   │   │  		├── ProductCard.jsx
-│   │   │  		├── ProductForm.jsx
-│   │   │  		├── ProductTable.jsx 
-│   │   │  		├── CategoryForm.jsx
-│   │   │  		├── SupplierForm.jsx
-│   │   │  		├── CustomerForm.jsx
-│   │   │  		├── PurchaseForm.jsx 
-│   │   │  		├── PurchaseTable.jsx 
-│   │   │  		├── SaleForm.jsx
-│   │   │  		├── SaleTable.jsx
-│   │   │  		├── InventoryTable.jsx 
-│   │   │  		├── StockBadge.jsx
-│   │   │  		├── StockStatus.jsx
-│   │   │  		├── StockMovementTable.jsx
-│   │   │  		├── DashboardCards.jsx 
-│   │   │  		├── LowStockAlert.jsx 
-│   │   │  		├── SummaryCards.jsx
-│   │   │  		├── Filters.jsx
-│   │   │  		├── Inventory.css
-│   │   │       └── index.js
+│   │   │   │   ├── Footer.jsx 
+│   │   │   │   ├── Header.jsx 
+│   │   │   │   ├── PageHeader.jsx 
+│   │   │   │   ├── Content.jsx 
+│   │   │   │   ├── Layout.jsx 
+│   │   │   │   ├── ProtectedLayout.jsx 
+│   │   │   │   ├── AuthLayout.jsx 
+│   │   │   │   ├── DashboardLayout.jsx 
+│   │   │   │   ├── Layout.css
+│   │   │   │   └── index.css   
+│   │   │   ├── icons/  
+│   │   │   │   ├── Icon.jsx
+│   │   │   │   └── Index.jsx
+│   │   │   ├── inventory/  
+│   │   │   │   ├── StockBadge.jsx
+│   │   │   │   ├── StockStatus.jsx
+│   │   │   │   ├── LowStockAlert.jsx
+│   │   │   │   ├── QuantityInput.jsx
+│   │   │   │   ├── Barcode.jsx
+│   │   │   │   ├── QRCode.jsx
+│   │   │   │   ├── PriceTag.jsx
+│   │   │   │   ├── CurrencyDisplay.jsx
+│   │   │   │   ├── InventoryFilters.jsx
+│   │   │   │   ├── SummaryCard.jsx
+│   │   │   │   ├── LowStockAlert.jsx
+│   │   │   │   ├── DashboardCard.jsx 
+│   │   │   │   ├── Inventory.css
+│   │   │   │   └── index.js
+│   │   │   ├── providers/  
+│   │   │   │   ├── ThemeProvider.jsx
+│   │   │   │   ├── ToastProvider.jsx
+│   │   │   │   ├── ModalProvider.jsx
+│   │   │   │   └── index.js
+│   │   │   ├── styles/  
+│   │   │   │   ├── common.css
+│   │   │   │   ├── layout.css
+│   │   │   │   └── index.css
+│   │   │   └── index.js   
 │   │   │  
 │   │   ├── features/                                       
 │   │   │   ├── auth/ 
 │   │   │  	│	├── api/                                
 │   │   │  	│	│   ├── auth.api.js
-│   │   │   │   │   └── token.api.js
+│   │   │  	│	│   ├── token.api.js
+│   │   │   │   │   └── index.js
 │   │   │  	│	├── components/                          # Reusable authentication UI
-│   │   │  	│	│   ├── LoginForm.jsx        
+│   │   │  	│	│   ├── AuthCard.jsx        
+│   │   │  	│	│   ├── LoginForm.jsx
 │   │   │  	│	│   ├── RegisterForm.jsx             
 │   │   │  	│	│   ├── ForgotPasswordForm.jsx
 │   │   │  	│	│   ├── ResetPasswordForm.jsx
 │   │   │  	│	│   ├── ChangePasswordForm.jsx
-│   │   │  	│	│   ├── PasswordInput.jsx 
-│   │   │  	│	│   ├── AuthCard.jsx
+│   │   │  	│	│   ├── VerifyEmailNotice.jsx
+│   │   │  	│	│   ├── SocialLogin.jsx 
+│   │   │  	│	│   ├── RemembarMe.jsx
+│   │   │  	│	│   ├── PasswordStrength.jsx
+│   │   │  	│	│   ├── PasswordRequirements.jsx
+│   │   │  	│	│   ├── AuthLogo.jsx
 │   │   │   │   │   └── index.js
 │   │   │  	│	├── pages/                               # Route-level pages 
 │   │   │  	│	│   ├── Login.jsx
@@ -87,30 +152,49 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │  	│	│   ├── ForgotPassword.jsx
 │   │   │  	│	│   ├── ResetPassword.jsx
 │   │   │  	│	│   ├── VerifyEmail.jsx 
+│   │   │  	│	│   ├── Profile.jsx
+│   │   │  	│	│   ├── ChangePassword.jsx
 │   │   │  	│	│   ├── Unauthorized.jsx
 │   │   │   │   │   └── index.js
 │   │   │  	│	├── hooks/                               # Authenticatio logic and custom hooks
 │   │   │  	│	│   ├── useAuth.js
-│   │   │  	│	│   ├── useRegister.js
 │   │   │  	│	│   ├── useLogin.js
+│   │   │  	│	│   ├── useRegister.js
 │   │   │  	│	│   ├── useLogout.js
+│   │   │  	│	│   ├── useForgostPassword.js
+│   │   │  	│	│   ├── useResetPassword.js
+│   │   │  	│	│   ├── useChangePassword.js
 │   │   │  	│	│   ├── useCurrentUser.js
 │   │   │  	│	│   ├── useRefreshToken.js
 │   │   │   │   │   └── index.js
-│   │   │  	│	├── services/                            # API calls (login, logout, refresh token, profile)
-│   │   │   │   │   └── auth.service.js
 │   │   │  	│	├── context/                             # Global authentication state
 │   │   │  	│	│   ├── AuthContext.jsx
 │   │   │  	│	│   ├── AuthProvider.jsx
 │   │   │   │   │   └── index.js
-│   │   │  	│	├── utils/                               # Helper functions messages, storage keys
+│   │   │  	│	├── services/                            # API calls (login, logout, refresh token, profile)
+│   │   │  	│	│   ├── auth.service.js
+│   │   │  	│	│   ├── token.service.js 
+│   │   │  	│	│   ├── storage.service.js
+│   │   │   │   │   └── index.js
+│   │   │  	│	├── utils/                               
 │   │   │  	│	│   ├── authHelpers.js
 │   │   │  	│	│   ├── authValidators.js
+│   │   │  	│	│   ├── authMapper.js 
+│   │   │  	│	│   ├── authStorage.js
 │   │   │   │   │   └── index.js
-│   │   │  	│	├── constants/                           # Roles permissions message storage keys
+│   │   │  	│	├── constants/                          
 │   │   │  	│	│   ├── permissions.js
+│   │   │  	│	│   ├── roles.js 
 │   │   │  	│	│   ├── authMessages.js
 │   │   │  	│	│   ├── storageKeys.js
+│   │   │  	│	│   ├── authRoutes.js
+│   │   │   │   │   └── index.js
+│   │   │  	│	├── schemas/                          
+│   │   │  	│	│   ├── login.schema.js
+│   │   │  	│	│   ├── register.schema.js 
+│   │   │  	│	│   ├── forgotPassword.schema.js
+│   │   │  	│	│   ├── resetPassword.schema.js
+│   │   │  	│	│   ├── changePassword.schema.js
 │   │   │   │   │   └── index.js
 │   │   │  	│	├── styles/                              # Authentication-specific styling 
 │   │   │   │   │   └── auth.css
@@ -212,7 +296,7 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │   ├── formatter.js                             # Formatting text, numbers, IDs 
 │   │   │   ├── date.js                                  # Date and time formatting utilities
 │   │   │   ├── currency.js                              # Currency calculations and formatting 
-│   │   │   ├── storage.js                               # LocalStorage and SessionStorage helpers                           # Role and permission helper functions
+│   │   │   ├── storage.js                               # LocalStorage and SessionStorage helpers                           
 │   │   │   └── index.js                                 # Re-export utitity function
 │   │   │     
 │   │   ├── constants/                                         
@@ -270,7 +354,7 @@ Full-Stack-Inventory-Management-System(IMS)
 │   │   │   ├── upload.routes.js 
 │   │   │   └── setting.routes.js                        
 │   │   │
-│   │   ├── controllers/                                    # DOMAIN-DRIVER FEATURES (matches frontend/features)
+│   │   ├── controllers/                                 # DOMAIN-DRIVER FEATURES (matches frontend/features)
 │   │   │   ├── auth/      
 │   │   │   │   ├── login.Controller.js
 │   │   │   │   ├── register.controller.js                              
