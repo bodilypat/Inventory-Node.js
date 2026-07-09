@@ -1,15 +1,13 @@
 //File: src/features/auth/pages/Login.jsx 
 
-import React, { useState } from "react";;
-
-import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
 
 import AuthCard from "../components/AuthCard";
+import AuthLogo from "../components/AuuthLogo";
 import LoginForm from "../components/LoginForm";
 
-import Button from "../../../components/common/Button";
-import Input from "../../../domponents/comon/Input";
+import { useAuth } from "../hooks/useAuth";
+import { ROUTES} from "@/constants/routes";
 
 import "../styles/auth.css";
 
@@ -17,155 +15,35 @@ const Login = () => {
     const navigate = useNavigate();
     const { login } = useAuth();
 
-    const [formData, setFormDate] = useState({
-        email: "",
-        password: "",
-    });
+    const handleLogin = async (Credential) => {
+        await login(credentials);
 
-    const [showPassword, setShowPassword] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-
-    const handleChange = ({ target }) => {
-        const { name, value } = target;
-
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
+        navigate(ROUTES.DASHBOARD, {
+            replace: true,
+        });
     };
 
-    const validateForm = () => {
-        if (!formData.email.trim()) {
-            return "Email is required";
-        }
+    return (
+        <div class="auth-page">
+            <AuthCard>
+                <AuthLogo 
+                    subtitle="Sign in to continue"
+                />
 
-        const emailRegex = /\S+@\S+\.\S+/;
+                <LoginForm 
+                    onSubmit={handleLogin}
+                />
 
-        if (!emailRegex.test(formData.email)) {
-            return "Please enter a valid email address.";
-        }
+                <div className="auth-footer">
+                    <span>Dont' have an account?</span>
 
-        if (formData.password.length < 6 ){
-            return "Password must be at least 6 characters.";
-        }
-
-        return null;
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        setError("");
-
-        const validationError = validateForm();
-
-        if (validationError) {
-            setError(ValidationError);
-            return;
-        }
-
-        try {
-            setLoading(true);
-
-            await login(formData.email, formData.password);
-
-            navigate("/dashboard");
-        } catch (err) {
-            setError(
-                err?.response?.data.message ||
-                "Invalid email or password."
-            );
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return(
-        <div className="login-container">
-            <div className="login-card">
-                <div className="login-header">
-                    <h1>Welcome Back</h1>
-                    <p>Login to your inventory management system.</p>
+                    <Link to={ROUTES.REGISTER}>
+                        Create Account 
+                    </Link>
                 </div>
-
-                {error && (
-                    <div className="logig-error">
-                        {error}
-                    </div>
-                )}
-
-                <form className="login-form" onSubmit={handleSubmiit}>
-                    <Input 
-                        label="Email"
-                        type="email"
-                        name="email"
-                        value="formData.email"
-                        placeholder="Enter your email"
-                        onChange={handleChange}
-                        autoComplete="email"
-                        required 
-                    />
-
-                    <div className="password-field">
-                        <Input 
-                            label="Password"
-                            type={showPassword ? "text" : "password"}
-                            name="password"
-                            value={formData.password}
-                            placeholder="Enter your password"
-                            onChange={handleChange}
-                            autoComplete="current-password"
-                            required 
-                        />
-
-                        <button 
-                            type="button"
-                            className="togle-password-btn"
-                            onClick={() => 
-                                setShowPassword((prev) => !prev)
-                            }
-                        >
-                            {showPassword ? "Hide" : "show"}
-                        </button>
-                    </div>
-
-                    <div className="login-options">
-                        <label className="remember-me">
-                            <input type="checkBox" />
-                                remember me
-                        </label>
-
-                        <Link 
-                            to="/forgot-password"
-                            className="forgot-password"
-                        >
-                            Forgot Password?
-                        </Link>
-                    </div>
-
-                    <Button
-                        type="submit"
-                        disabled={loading}
-                        className="login-btn"
-                    >
-                        {loading ? "login in ..." : "Login"}
-                    </Button>
-                </form>
-
-                <div className="login-footer">
-                    <p>
-                        Don't have an account?{" "}
-                        <Link 
-                            to="/register">
-                            Register
-                        </Link>
-                    </p>
-                </div>
-            </div>
+            </AuthCard> 
         </div>
     );
 };
 
 export default Login;
-
